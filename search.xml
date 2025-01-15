@@ -26,7 +26,7 @@ import {initHBE} from "/js/plugins/hbe.js";
   <entry>
     <title>jenv多版本jdk管理</title>
     <url>/2025/01/15/jenv%E5%A4%9A%E7%89%88%E6%9C%ACjdk%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<p>macOS 用户建议先安装 <a class="link"   href="https://javabetter.cn/gongju/brew.html" >Homebrew<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，这是一个 macOS 下的命令行软件管理器，可以通过一行命令安装 Apple（或 Linux 系统）没有预装但你需要的软件。</p>
+    <content><![CDATA[<p>macOS 用户建议先安装 [Homebrew]，这是一个 macOS 下的命令行软件管理器，可以通过一行命令安装 Apple（或 Linux 系统）没有预装但你需要的软件。</p>
 <p>安装完成后，直接执行 <code>brew install openjdk@8</code> 就可以安装 JDK 8 了。</p>
 <p>如果需要在 macOS 安装多个版本的 JDK ，比如说 JDK 17，多个版本的 JDK 怎么管理呢？可以安装一下 <a class="link"   href="https://www.jenv.be/" >jEnv<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，一个帮助我们管理 JAVA_HOME 的命令行工具，在 GitHub 上已经收获 4.3k 的 star。</p>
 <p>安装：</p>
@@ -50,5 +50,8 @@ import {initHBE} from "/js/plugins/hbe.js";
 <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">jenv global 17</span><br></pre></td></tr></table></figure></div>
 
 ]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
 </search>
