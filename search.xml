@@ -122,68 +122,118 @@ import {initHBE} from "/js/plugins/hbe.js";
   <entry>
     <title>第一个SpringBoot项目</title>
     <url>/2025/01/17/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<p>通过 Intellij IDEA 新建 Spring Boot 项目。</p>
+    <content><![CDATA[<p>本文将手把手带你完成第一个Spring Boot项目的创建、开发、测试与部署，并附送开发效率提升技巧。建议使用IntelliJ IDEA 2022.3以上版本跟随操作。</p>
+<h2 id="一、项目创建"><a href="#一、项目创建" class="headerlink" title="一、项目创建"></a>一、项目创建</h2><ol>
+<li>打开IDEA，选择<code>File &gt; New &gt; Project</code></li>
+<li>左侧选择<code>Spring Initializr</code>，设置JDK版本为1.8+</li>
+<li>项目配置示例：<ul>
+<li>Group: com.example</li>
+<li>Artifact: demo</li>
+<li>Type: Maven</li>
+<li>Java Version: 8</li>
+</ul>
+</li>
+<li>依赖选择：<ul>
+<li>Spring Web（必选）</li>
+<li>Thymeleaf（可选）</li>
+<li>DevTools（后续讲解）</li>
+</ul>
+</li>
+</ol>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/../images/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/image-20250117222103009.png"
                       alt="image-20250117222103009"
                 ></p>
-<p>解开压缩包，并导入到 Intellij IDEA 中，可以看到 Spring Boot 项目的目录结构。</p>
+<h2 id="二、项目结构解析"><a href="#二、项目结构解析" class="headerlink" title="二、项目结构解析"></a>二、项目结构解析</h2><p>生成的项目包含以下核心结构：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">src/</span><br><span class="line">├─ main/</span><br><span class="line">│  ├─ java/</span><br><span class="line">│  │  └─ com/example/demo/</span><br><span class="line">│  │     └─ DemoApplication.java <span class="comment"># 启动类</span></span><br><span class="line">│  ├─ resources/</span><br><span class="line">│  │  ├─ static/  <span class="comment"># 静态资源目录</span></span><br><span class="line">│  │  ├─ templates/ <span class="comment"># 模板文件目录</span></span><br><span class="line">│  │  └─ application.properties <span class="comment"># 配置文件</span></span><br><span class="line">├─ <span class="built_in">test</span>/ <span class="comment"># 测试目录</span></span><br><span class="line">pom.xml <span class="comment"># Maven依赖管理文件</span></span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/../images/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/Spring%20Boot%20%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%9B%BE.png"
                       alt="Spring Boot 项目初始图"
                 ></p>
+<h2 id="三、编写第一个接口"><a href="#三、编写第一个接口" class="headerlink" title="三、编写第一个接口"></a>三、编写第一个接口</h2><p>在<code>src/main/java</code>下新建controller包，创建HelloController.java：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, Spring Boot!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>关键注解说明：</p>
 <ul>
-<li>src&#x2F;main&#x2F;java 为项目的开发目录，业务代码在这里写。</li>
-<li>src&#x2F;main&#x2F;resources 为配置文件目录，静态文件、模板文件和配置文件都放在这里。<ul>
-<li>子目录 static 用于存放静态资源文件，比如说 JS、CSS 图片等。</li>
-<li>子目录 templates 用于存放模板文件，比如说 thymeleaf 和 freemarker 文件。</li>
+<li><code>@RestController</code>：组合注解，包含<code>@Controller</code>和<code>@ResponseBody</code></li>
+<li><code>@GetMapping</code>：定义GET请求映射</li>
 </ul>
-</li>
-<li>src&#x2F;test&#x2F;java 为测试类文件目录。</li>
-<li>pom.xml 用来管理项目的依赖和构建。</li>
-</ul>
-<p>第一次启动，我个人习惯在 main 类中右键，在弹出的右键菜单这种选择「run … main()」启动。</p>
-<p>可以在日志中看到 Web 项目是以 Tomcat 为容器的，默认端口号为 8080，根路径为空。</p>
+<h2 id="四、启动与测试"><a href="#四、启动与测试" class="headerlink" title="四、启动与测试"></a>四、启动与测试</h2><ol>
+<li>打开<code>DemoApplication.java</code></li>
+<li>点击main方法旁的绿色箭头启动项目</li>
+</ol>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/../images/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/image-20250117223614332.png"
                       alt="image-20250117223614332"
                 ></p>
-<p>项目既然启动成功了，我们在浏览器里访问 8080 端口测试下吧。</p>
+<ol start="3">
+<li>观察控制台输出，确认启动成功：</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tomcat initialized with port(s): 8080 (http)</span><br><span class="line">Started DemoApplication in 2.356 seconds</span><br></pre></td></tr></table></figure></div>
+
+<ol start="4">
+<li>浏览器访问<code>http://localhost:8080/hello</code>，应看到返回字符串</li>
+</ol>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/../images/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/image-20250117224853452.png"
-                      alt="image-20250117224853452"
+                     data-src="/../images/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/image-20250124151250007.png"
+                      alt="image-20250124151250007"
                 ></p>
-<p>咦，竟然 Whitelabel 了，这个 404 页面是 Spring Boot 默认的错误页面，表示我们的请求在 Web 服务中不存在。</p>
-<p>那该怎么办呢？</p>
-<p>我们来增加一个 Controller 文件，用来处理 Web 请求，内容如下。</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">    </span><br><span class="line">    @GetMapping(&quot;/hello&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String hello() &#123;</span><br><span class="line">        return &quot;hello, springboot&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="五、配置管理"><a href="#五、配置管理" class="headerlink" title="五、配置管理"></a>五、配置管理</h2><p>在<code>application.properties</code>中添加常用配置：</p>
+<div class="code-container" data-rel="Properties"><figure class="iseeu highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改服务器端口</span></span><br><span class="line"><span class="attr">server.port</span>=<span class="string">9090</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 开启调试模式</span></span><br><span class="line"><span class="attr">debug</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 自定义配置</span></span><br><span class="line"><span class="attr">welcome.message</span>=<span class="string">Hello Developer!</span></span><br></pre></td></tr></table></figure></div>
 
-<p>这段代码的业务逻辑非常简单，用户发送 hello 请求，服务器端响应一个“hello, springboot”回去。</p>
-<p>Jar项目要比传统的 Web 项目省事省心省力，不需要打成 war 包，不需要把 war 包放到 Tomcat 的 webapp 目录下再启动。</p>
-<p>那如果想把项目打成 jar 包放到服务器上，以 <code>java -jar xxx.jar</code> 形式运行的话，该怎么做呢？</p>
-<p>打开 Terminal 终端， 执行命令 <code>mvn clean package</code>，等待打包结果。</p>
+<p>通过<code>@Value</code>注入配置：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;welcome.message&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String welcomeMsg;</span><br><span class="line"></span><br><span class="line"><span class="meta">@GetMapping(&quot;/welcome&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">welcome</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> welcomeMsg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="六、打包与部署"><a href="#六、打包与部署" class="headerlink" title="六、打包与部署"></a>六、打包与部署</h2><ol>
+<li>确认pom.xml中包含打包插件：</li>
+</ol>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li>终端执行打包命令：</li>
+</ol>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">mvn clean package -DskipTests</span><br></pre></td></tr></table></figure></div>
+
+<ol start="3">
+<li>在target目录生成<code>demo-0.0.1-SNAPSHOT.jar</code> </li>
+<li>运行jar包：</li>
+</ol>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">java -jar target/demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/../images/%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E9%A1%B9%E7%9B%AE/image-20250117233906608.png"
                       alt="image-20250117233906608"
                 ></p>
-<p>因此我们就可以利用 Maven 命令来完成项目打包，打包完成后，进入 target 目录下，就可以看到打包好的 jar 包了。</p>
-<p>热部署</p>
-<p>作为开发者，我们希望每次修改代码后，代码能够自动编译，服务能够自动重新加载，这样就省去了重新运行代码的烦恼。</p>
-<p>那 spring-boot-devtools 就是这样的一个神器，当我们把它添加到项目当中后，无论是代码修改，还是配置文件修改，服务都能够秒级重载（俗称热部署），这在我们开发的时候，非常有用。</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></div>
+<h2 id="七、开发效率提升技巧"><a href="#七、开发效率提升技巧" class="headerlink" title="七、开发效率提升技巧"></a>七、开发效率提升技巧</h2><h3 id="1-热部署配置"><a href="#1-热部署配置" class="headerlink" title="1. 热部署配置"></a>1. 热部署配置</h3><p>添加devtools依赖：</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 
+<p>IDEA设置（开启自动编译）：</p>
+<ol>
+<li><code>File &gt; Settings &gt; Build &gt; Compiler</code></li>
+<li>勾选<code>Build project automatically</code></li>
+<li>Registry设置（Ctrl+Shift+A搜索Registry）：<ul>
+<li>启用<code>compiler.automake.allow.when.app.running</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="2-接口测试技巧"><a href="#2-接口测试技巧" class="headerlink" title="2. 接口测试技巧"></a>2. 接口测试技巧</h3><p>使用Postman或IDEA内置的HTTP Client：</p>
+<div class="code-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="code"><pre><span class="line">### 测试hello接口</span><br><span class="line">GET http://localhost:8080/hello</span><br><span class="line"></span><br><span class="line">### 测试welcome接口 </span><br><span class="line">GET http://localhost:8080/welcome</span><br></pre></td></tr></table></figure></div>
 
-
+<h2 id="常见问题排查"><a href="#常见问题排查" class="headerlink" title="常见问题排查"></a>常见问题排查</h2><p>Q：启动时报端口冲突？<br>A：在application.properties修改<code>server.port=新端口</code></p>
+<p>Q：修改代码后未生效？<br>A：检查devtools是否生效，可尝试<code>Ctrl+F9</code>手动触发编译</p>
+<p>Q：打包时提示找不到主类？<br>A：确认pom.xml中正确配置了spring-boot-maven-plugin</p>
+<hr>
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
