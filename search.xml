@@ -239,4 +239,24 @@ import {initHBE} from "/js/plugins/hbe.js";
         <tag>SpringBoot</tag>
       </tags>
   </entry>
+  <entry>
+    <title>vue+node.js 0到1实现即时通讯聊天室-前端篇</title>
+    <url>/2025/02/03/vue-node-js-0%E5%88%B01%E5%AE%9E%E7%8E%B0%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E8%81%8A%E5%A4%A9%E5%AE%A4-%E5%89%8D%E7%AB%AF%E7%AF%87/</url>
+    <content><![CDATA[<p><strong>SparkLink</strong></p>
+<ul>
+<li>0到1实现即时通讯聊天室app</li>
+<li>前端 vue.js + uni-app</li>
+<li>后端 node.js + mongoldb + websocket</li>
+</ul>
+<p>前端篇 1.0</p>
+<p>前端准备</p>
+<p>知识: html、css、js、vue.js</p>
+<p>框架: uni-app</p>
+<p>编辑器: hbuilderx</p>
+<p>创建项目</p>
+<p> 一个 uni-app<a class="link"   href="https://chat.deepseek.com/a/chat/s/91859562-e228-419c-a8f3-5361c4859fd0" >参考文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>工程，就是一个 Vue 项目，你可以通过 HBuilderX 或 cli 方式快速创建 uni-app 工程</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">┌─uniCloud              云空间目录，支付宝小程序云为uniCloud-alipay，阿里云为uniCloud-aliyun，腾讯云为uniCloud-tcb（详见uniCloud）</span><br><span class="line">│─components            符合vue组件规范的uni-app组件目录</span><br><span class="line">│  └─comp-a.vue         可复用的a组件</span><br><span class="line">├─utssdk                存放uts文件（已废弃）</span><br><span class="line">├─pages                 业务页面文件存放的目录</span><br><span class="line">│  ├─index</span><br><span class="line">│  │  └─index.vue       index页面</span><br><span class="line">│  └─list</span><br><span class="line">│     └─list.vue        list页面</span><br><span class="line">├─static                存放应用引用的本地静态资源（如图片、视频等）的目录，注意：静态资源都应存放于此目录</span><br><span class="line">├─uni_modules           存放uni_module 详见</span><br><span class="line">├─platforms             存放各平台专用页面的目录，详见</span><br><span class="line">├─nativeplugins         App原生语言插件 详见</span><br><span class="line">├─nativeResources       App端原生资源目录</span><br><span class="line">│  ├─android            Android原生资源目录 详见</span><br><span class="line">|  └─ios                iOS原生资源目录 详见</span><br><span class="line">├─hybrid                App端存放本地html文件的目录，详见</span><br><span class="line">├─wxcomponents          存放微信小程序、QQ小程序组件的目录，详见</span><br><span class="line">├─mycomponents          存放支付宝小程序组件的目录，详见</span><br><span class="line">├─swancomponents        存放百度小程序组件的目录，详见</span><br><span class="line">├─ttcomponents          存放抖音小程序、飞书小程序组件的目录，详见</span><br><span class="line">├─kscomponents          存放快手小程序组件的目录，详见</span><br><span class="line">├─jdcomponents          存放京东小程序组件的目录，详见</span><br><span class="line">├─unpackage             非工程代码，一般存放运行或发行的编译结果</span><br><span class="line">├─main.js               Vue初始化入口文件</span><br><span class="line">├─App.vue               应用配置，用来配置App全局样式以及监听 应用生命周期</span><br><span class="line">├─pages.json            配置页面路由、导航条、选项卡等页面类信息，详见</span><br><span class="line">├─manifest.json         配置应用名称、appid、logo、版本等打包信息，详见</span><br><span class="line">├─AndroidManifest.xml   Android原生应用清单文件 详见</span><br><span class="line">├─Info.plist            iOS原生应用配置文件 详见</span><br><span class="line">└─uni.scss              内置的常用样式变量</span><br><span class="line">	</span><br></pre></td></tr></table></figure></div>
+
+]]></content>
+  </entry>
 </search>
