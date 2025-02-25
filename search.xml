@@ -259,4 +259,47 @@ import {initHBE} from "/js/plugins/hbe.js";
 
 ]]></content>
   </entry>
+  <entry>
+    <title>Pytorch常用命令</title>
+    <url>/2025/02/25/Pytorch%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>conda的版本、python的版本(这里是我之前安装过python)和已经创建的虚拟环境。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">conda --version</span><br><span class="line"></span><br><span class="line">python --version</span><br><span class="line"></span><br><span class="line">conda info --envs</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>创建一个新的虚拟环境用于安装pytorch</p>
+<p>退出某一环境命令</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure></div>
+
+<p>虚拟环境创建</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch</span><br></pre></td></tr></table></figure></div>
+
+<p>如果想每次打开终端，不自动进入任何环境（现在打开终端自动进入base环境）可以设置如下操作：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --<span class="built_in">set</span> auto_activate_base <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-配置pytorch-虚拟环境"><a href="#2-配置pytorch-虚拟环境" class="headerlink" title="2. 配置pytorch 虚拟环境"></a>2. 配置pytorch 虚拟环境</h3><p>首先终端进入pytorch环境：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">conda activate pytorch</span><br></pre></td></tr></table></figure></div>
+
+<p>1）查看现在环境中所有已安装的包</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">conda <span class="built_in">list</span></span><br></pre></td></tr></table></figure></div>
+]]></content>
+  </entry>
+  <entry>
+    <title>马克思主义基本原理</title>
+    <url>/2025/02/20/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<p>绪论 马克思注意是关于工人阶级和人类解放的科学</p>
+<table>
+<thead>
+<tr>
+<th>知识点名称</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>马克思主义是时代的产物⭐️⭐️</td>
+<td>1. 马克思主义产生于（19世纪40年代中期）</td>
+</tr>
+</tbody></table>
+]]></content>
+  </entry>
 </search>
